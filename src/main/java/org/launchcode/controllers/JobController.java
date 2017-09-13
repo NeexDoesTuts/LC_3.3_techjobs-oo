@@ -49,5 +49,25 @@ public class JobController {
             return "new-job";
         }
 
+        // get all values from the jobForm and create a new Job()
+        String name = jobForm.getName(); // name from the form
+        // grab the element from the form (id) and search for it in our fake database
+        // returns objects of each type
+        Employer employer = jobData.getEmployers().findById(jobForm.getEmployerId());
+        Location location = jobData.getLocations().findById(jobForm.getLocationId());
+        CoreCompetency coreCompetency = jobData.getCoreCompetencies().findById(jobForm.getCoreCompetencyId());
+        PositionType positionType = jobData.getPositionTypes().findById(jobForm.getPositionTypeId());
+
+        // create a new job
+        Job newJob = new Job(name, employer, location, positionType, coreCompetency);
+
+        // add new job to jobData "database"
+        jobData.add(newJob);
+
+        // display the details on its own page
+        Integer idNum = newJob.getId(); // get what is the ID for the created job
+        model.addAttribute("job", newJob); // pass the job object
+        return "redirect:/job?id=" + idNum; // create a link fo the exact job
+
     }
 }
