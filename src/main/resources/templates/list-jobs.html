@@ -20,6 +20,7 @@
             <h3 th:text="${jobs.size() + ' Result(s)'}"></h3>
 
             <div  th:each="job : ${jobs}">
+               <!-- single job fragment START -->
                 <table  th:fragment="single-job" class="job-listing">
                     <tr>
                         <th>Name</th>
@@ -42,6 +43,7 @@
                         <td th:text="${job.coreCompetency}"></td>
                     </tr>
                 </table>
+                <!-- single job fragment END -->
             </div>
 
         </div>
