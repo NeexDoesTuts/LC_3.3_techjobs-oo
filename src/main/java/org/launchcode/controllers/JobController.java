@@ -1,6 +1,6 @@
 package org.launchcode.controllers;
 
-import org.launchcode.models.Job;
+import org.launchcode.models.*;
 import org.launchcode.models.forms.JobForm;
 import org.launchcode.models.data.JobData;
 import org.springframework.stereotype.Controller;
@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
-/**
- * Created by LaunchCode
- */
 @Controller
 @RequestMapping(value = "job")
 public class JobController {
@@ -45,7 +42,12 @@ public class JobController {
         // new Job and add it to the jobData data store. Then
         // redirect to the job detail view for the new Job.
 
-        return "";
+        // check for empty name field
+        // redirect back to the new-job form/route and display errors
+        if (jobForm.getName().length() == 0) {
+            model.addAttribute("errors", errors);
+            return "new-job";
+        }
 
     }
 }
