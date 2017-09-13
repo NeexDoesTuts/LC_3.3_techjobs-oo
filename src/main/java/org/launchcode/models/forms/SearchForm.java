@@ -2,9 +2,6 @@ package org.launchcode.models.forms;
 
 import org.launchcode.models.JobFieldType;
 
-/**
- * Created by LaunchCode
- */
 public class SearchForm {
 
     // The search options
